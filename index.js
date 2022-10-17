@@ -7,7 +7,7 @@ require('dotenv').config()
 //Import Routes
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
-// const categoryRoutes = require('./routes/category')
+const categoryRoutes = require('./routes/category')
 // const postRoutes = require('./routes/post')
 // const websiteRoutes = require('./routes/website')
 
@@ -30,6 +30,7 @@ app.use(morgan('dev'))
 // route middlewares
 app.use('/auth', authRoutes)
 app.use('/user', userRoutes)
+app.use('/category', categoryRoutes)
 // app.use('/api', categoryRoutes)
 // app.use('/api', postRoutes)
 // app.use('/api', websiteRoutes)

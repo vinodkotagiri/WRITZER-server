@@ -1,0 +1,5 @@
+exports.createCategory = require('./create')
+exports.listCategories = require('./categories')
+exports.postsByCategory = require('./postsByCategory')
+exports.removeCategory = require('./remove')
+exports.updateCategory = require('./update')
