@@ -1,6 +1,6 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
-const { hashPassword, comparePassword } = require('../helpers/auth')
+const { hashPassword } = require('../helpers/auth')
 exports.signup = async (req, res) => {
 	try {
 		// validation
@@ -40,16 +40,20 @@ exports.signup = async (req, res) => {
 				expiresIn: '7d',
 			})
 			const { password, ...rest } = user._doc
-			return res.status(200).json({
+			return res.status(201).json({
 				token,
 				user: rest,
 			})
 		} catch (error) {
 			console.log(err)
-			return res.status(500).json({ error: 'Somethong went wrong: ' + error })
+			return res
+				.status(500)
+				.json({ error: 'Somethong went wrong: ' + error.message })
 		}
 	} catch (error) {
 		console.log(err)
-		return res.status(500).json({ error: 'Somethong went wrong: ' + error })
+		return res
+			.status(500)
+			.json({ error: 'Somethong went wrong: ' + error.message })
 	}
 }
