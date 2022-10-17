@@ -1,0 +1,6 @@
+exports.createUser = require('./create')
+exports.listUsers = require('./listUsers')
+exports.currentUser = require('./currentUser')
+exports.deleteUser = require('./delete')
+exports.updateUser = require('./update')
+exports.updateUserByAdmin = require('./updateByAdmin')
