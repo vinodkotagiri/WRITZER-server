@@ -6,9 +6,10 @@ require('dotenv').config()
 
 //Import Routes
 const authRoutes = require('./routes/auth')
-const categoryRoutes = require('./routes/category')
-const postRoutes = require('./routes/post')
-const websiteRoutes = require('./routes/website')
+const userRoutes = require('./routes/user')
+// const categoryRoutes = require('./routes/category')
+// const postRoutes = require('./routes/post')
+// const websiteRoutes = require('./routes/website')
 
 //Create Serverr
 const app = express()
@@ -27,11 +28,12 @@ app.use(cors())
 app.use(morgan('dev'))
 
 // route middlewares
-app.use('/api', authRoutes)
-app.use('/api', categoryRoutes)
-app.use('/api', postRoutes)
-app.use('/api', websiteRoutes)
+app.use('/auth', authRoutes)
+app.use('/user', userRoutes)
+// app.use('/api', categoryRoutes)
+// app.use('/api', postRoutes)
+// app.use('/api', websiteRoutes)
 
 const port = process.env.PORT || 8000
 
-http.listen(port, () => console.log('Server running on port +', port))
+http.listen(port, () => console.log('Server running on port ::', port))

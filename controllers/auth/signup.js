@@ -1,6 +1,6 @@
-const User = require('../models/user')
+const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
-const { hashPassword } = require('../helpers/auth')
+const { hashPassword } = require('../../helpers/auth')
 const signup = async (req, res) => {
 	try {
 		// validation
@@ -31,8 +31,8 @@ const signup = async (req, res) => {
 		const hashedPassword = await hashPassword(password)
 		try {
 			const user = await new User({
-				name,
-				email,
+				name: name.toLowerCase(),
+				email: email.toLowerCase(),
 				password: hashedPassword,
 			}).save()
 			// create signed token
@@ -45,13 +45,13 @@ const signup = async (req, res) => {
 				user: rest,
 			})
 		} catch (error) {
-			console.log(err)
+			console.log(error)
 			return res
 				.status(500)
 				.json({ error: 'Somethong went wrong: ' + error.message })
 		}
 	} catch (error) {
-		console.log(err)
+		console.log(error)
 		return res
 			.status(500)
 			.json({ error: 'Somethong went wrong: ' + error.message })
