@@ -1,7 +1,7 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { hashPassword } = require('../helpers/auth')
-exports.signup = async (req, res) => {
+const signup = async (req, res) => {
 	try {
 		// validation
 		const { name, email, password } = req.body
@@ -57,3 +57,4 @@ exports.signup = async (req, res) => {
 			.json({ error: 'Somethong went wrong: ' + error.message })
 	}
 }
+module.exports = signup
