@@ -3,6 +3,8 @@ const slugify = require('slugify')
 const createCategory = async (req, res) => {
 	try {
 		const { name } = req.body
+		const check = await Category.findOne({ slug: slugify(name) })
+		if (check) return res.status(400).json({ error: 'Category already exists' })
 		const category = await new Category({
 			name,
 			slug: slugify(name),

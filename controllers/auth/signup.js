@@ -6,24 +6,24 @@ const signup = async (req, res) => {
 		// validation
 		const { name, email, password } = req.body
 		if (!name) {
-			return res.json({
+			return res.status(400).json({
 				error: 'Name is required',
 			})
 		}
 		if (!email) {
-			return res.json({
+			return res.status(400).json({
 				error: 'Email is required',
 			})
 		}
 		if (!password || password.length < 6) {
-			return res.json({
+			return res.status(400).json({
 				error: 'Password is required and should be 6 characters long',
 			})
 		}
 		//check if user already exists
 		const exist = await User.findOne({ email })
 		if (exist) {
-			return res.json({
+			return res.status(400).json({
 				error: 'Email is taken',
 			})
 		}

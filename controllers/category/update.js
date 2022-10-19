@@ -1,6 +1,7 @@
 const Category = require('../../models/category')
 const slugify = require('slugify')
 const updateCategory = async (req, res) => {
+	console.log(req.body)
 	try {
 		const { slug } = req.params
 		const { name } = req.body

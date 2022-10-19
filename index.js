@@ -8,7 +8,7 @@ require('dotenv').config()
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
 const categoryRoutes = require('./routes/category')
-// const postRoutes = require('./routes/post')
+const postRoutes = require('./routes/post')
 // const websiteRoutes = require('./routes/website')
 
 //Create Serverr
@@ -31,8 +31,8 @@ app.use(morgan('dev'))
 app.use('/auth', authRoutes)
 app.use('/user', userRoutes)
 app.use('/category', categoryRoutes)
+app.use('/post', postRoutes)
 // app.use('/api', categoryRoutes)
-// app.use('/api', postRoutes)
 // app.use('/api', websiteRoutes)
 
 const port = process.env.PORT || 8000

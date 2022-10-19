@@ -12,7 +12,7 @@ const {
 	postsByCategory,
 } = require('../controllers/category')
 
-router.post('/', requireSignin, isAdmin, createCategory)
+router.post('/create', requireSignin, isAdmin, createCategory)
 router.get('/all', listCategories)
 router.delete('/:slug', requireSignin, isAdmin, removeCategory)
 router.put('/:slug', requireSignin, isAdmin, updateCategory)
