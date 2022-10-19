@@ -23,6 +23,7 @@ exports.isAdmin = async (req, res, next) => {
 		}
 	} catch (err) {
 		console.log(err)
+		return res.status(403).send('Unauthorized')
 	}
 }
 
@@ -36,6 +37,7 @@ exports.isAuthor = async (req, res, next) => {
 		}
 	} catch (err) {
 		console.log(err)
+		return res.status(403).send('You are not an author')
 	}
 }
 
@@ -53,8 +55,8 @@ exports.canCreateRead = async (req, res, next) => {
 				return res.status(403).send('Unauhorized')
 		}
 	} catch (err) {
-		res.status(500).json({ error: err })
 		console.log(err)
+		return res.status(403).send('Unauhorized')
 	}
 }
 
@@ -78,6 +80,7 @@ exports.canUpdateDeletePost = async (req, res, next) => {
 		}
 	} catch (err) {
 		console.log(err)
+		return res.status(403).send('Unauhorized')
 	}
 }
 
@@ -96,9 +99,12 @@ exports.canDeleteMedia = async (req, res, next) => {
 					next()
 				}
 				break
+			default:
+				return res.status(403).send('Unauhorized')
 		}
 	} catch (err) {
 		console.log(err)
+		return res.status(403).send('Unauhorized')
 	}
 }
 
@@ -126,5 +132,6 @@ exports.canUpdateDeleteComment = async (req, res, next) => {
 		}
 	} catch (err) {
 		console.log(err)
+		return res.status(403).send('Unauhorized')
 	}
 }

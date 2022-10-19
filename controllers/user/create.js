@@ -23,21 +23,21 @@ const createUser = async (req, res) => {
 	// hash password
 	const hashedPassword = await hashPassword(password)
 	// if checked, send email with login details
-	if (checked) {
-		try {
-			const user = await new User({
-				name,
-				email,
-				password: hashedPassword,
-				role,
-				website,
-			}).save()
+	try {
+		const user = await new User({
+			name,
+			email,
+			password: hashedPassword,
+			role,
+			website,
+		}).save()
+		if (checked) {
 			emailUserDetails(name, email, password)
-			const { password: pwd, ...rest } = user._doc
-			return res.status(201).json({ rest })
-		} catch (err) {
-			console.log(err)
 		}
+		const { password: pwd, ...rest } = user._doc
+		return res.status(201).json({ rest })
+	} catch (err) {
+		console.log(err)
 	}
 }
 module.exports = createUser

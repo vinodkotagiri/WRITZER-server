@@ -1,16 +1,16 @@
 const { createPost } = require('./create')
+const { editPost } = require('./edit')
+const { removePost } = require('./remove')
+const { media, removeMedia } = require('./media')
+const { uploadImageFile, uploadImage } = require('./uploads')
 const {
 	postsForAdmin,
 	posts,
 	singlePost,
 	postsByAuthor,
 	postCount,
-	getNumbers,
+	getStats,
 } = require('./posts')
-const { editPost } = require('./edit')
-const { removePost } = require('./remove')
-const { uploadImageFile, uploadImage } = require('./uploads')
-const { media, removeMedia } = require('./media')
 const {
 	createComment,
 	comments,
@@ -19,6 +19,7 @@ const {
 	updateComment,
 	removeComment,
 } = require('./comments')
+
 module.exports = {
 	createPost,
 	postsForAdmin,
@@ -32,7 +33,7 @@ module.exports = {
 	removeMedia,
 	postsByAuthor,
 	postCount,
-	getNumbers,
+	getStats,
 	createComment,
 	comments,
 	userComments,

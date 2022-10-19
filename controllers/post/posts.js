@@ -1,5 +1,7 @@
 const Post = require('../../models/post')
 const Comment = require('../../models/comment')
+const User = require('../../models/user')
+const Category = require('../../models/category')
 const posts = async (req, res) => {
 	try {
 		const perPage = 6
@@ -19,15 +21,27 @@ const posts = async (req, res) => {
 }
 
 const postsForAdmin = async (req, res) => {
+	console.log('Admin posts for admin')
 	try {
-		const posts = await Post.find().select('title slug')
+		const posts = await Post.find().select('slug title')
 		res.status(200).json(posts)
 	} catch (err) {
 		console.log(err)
 		res.status(500).json(err)
 	}
 }
-
+const getStats = async (req, res) => {
+	try {
+		const posts = await Post.countDocuments()
+		const users = await User.countDocuments()
+		const comments = await Comment.countDocuments()
+		const categories = await Category.countDocuments()
+		return res.status(200).json({ posts, users, comments, categories })
+	} catch (err) {
+		res.status(500).json({ error: err })
+		console.log(err)
+	}
+}
 const singlePost = async (req, res) => {
 	try {
 		const { slug } = req.params
@@ -39,9 +53,7 @@ const singlePost = async (req, res) => {
 		const comments = await Comment.find({ postId: post._id })
 			.populate('postedBy', 'name')
 			.sort({ createdAt: -1 })
-
 		console.log('__comments__', comments)
-
 		res.json({ post, comments })
 	} catch (err) {
 		console.log(err)
@@ -68,18 +80,6 @@ const postCount = async (req, res) => {
 		console.log(err)
 	}
 }
-const getNumbers = async (req, res) => {
-	try {
-		const posts = await Post.countDocuments()
-		const users = await User.countDocuments()
-		const comments = await Comment.countDocuments()
-		const categories = await Category.countDocuments()
-
-		return res.json({ posts, users, comments, categories })
-	} catch (err) {
-		console.log(err)
-	}
-}
 
 module.exports = {
 	posts,
@@ -87,5 +87,5 @@ module.exports = {
 	singlePost,
 	postsByAuthor,
 	postCount,
-	getNumbers,
+	getStats,
 }

@@ -14,7 +14,6 @@ const websiteRoutes = require('./routes/website')
 //Create Serverr
 const app = express()
 const http = require('http').createServer(app)
-
 // Db connection
 mongoose
 	.connect(process.env.DB_URL)
