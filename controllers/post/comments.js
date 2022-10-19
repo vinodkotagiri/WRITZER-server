@@ -1,3 +1,4 @@
+const Comment = require('../../models/comment')
 const createComment = async (req, res) => {
 	try {
 		const { postId } = req.params
