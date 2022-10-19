@@ -54,4 +54,29 @@ const emailUserDetails = (name, email, password) => {
 		.then(console.log)
 		.catch(console.log)
 }
-module.exports = { sendResetEmail, emailUserDetails }
+
+const sendContactMail = ({ name, email, message }) => {
+	const recipients = [
+		{
+			email: email,
+		},
+	]
+	mailOptions
+		.sendTransacEmail({
+			sender,
+			to: recipients,
+			subject: 'Email received from WRITZER contact form',
+			htmlContent: `
+        <h3>Contact form message</h3>
+		<p><u>Name</u></p>
+		<p>${name}</p>
+		<p><u>Email</u></p>
+		<p>${email}</p>
+		<p><u>Message</u></p>
+		<p>${message}</p>
+        `,
+		})
+		.then(console.log)
+		.catch(console.log)
+}
+module.exports = { sendResetEmail, emailUserDetails, sendContactMail }

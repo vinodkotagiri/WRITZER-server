@@ -9,7 +9,7 @@ const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
 const categoryRoutes = require('./routes/category')
 const postRoutes = require('./routes/post')
-// const websiteRoutes = require('./routes/website')
+const websiteRoutes = require('./routes/website')
 
 //Create Serverr
 const app = express()
@@ -32,8 +32,7 @@ app.use('/auth', authRoutes)
 app.use('/user', userRoutes)
 app.use('/category', categoryRoutes)
 app.use('/post', postRoutes)
-// app.use('/api', categoryRoutes)
-// app.use('/api', websiteRoutes)
+app.use('/', websiteRoutes)
 
 const port = process.env.PORT || 8000
 
